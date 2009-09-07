@@ -21,8 +21,41 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Commentary:
+;;
+;; This elisp helps you record the number of characters you typed on
+;; Outputz.com
+;;
 
-;; 
+;;; Installation:
+;;
+;; To use this elisp, locate typing-outputz.el in a directory included
+;; in 'load-path', and write following codes in your .emacs
+;;
+;;     (require 'typing-outputz)
+;;     (global-typing-outputz-mode t)
+;;     (setq typing-outputz-key "bWAROb-quUbf")
+;;
+
+;;; Tips:
+;;
+;; If 'notify-send' command is available on your machine, following
+;; codes enables pop-up notification on update.
+;;
+;;     (defun to-growl-record-buffer ()
+;;       (let ((growl-command-template
+;;              (cond
+;;               ((eq 0 (shell-command "which notify-send"))
+;;                "notify-send -i gnome-emacs \"Emacs notify\" \"%s\"")
+;;               (t nil))))
+;;         (when growl-command-template
+;;           (shell-command
+;;            (format growl-command-template
+;;                    (format "Outputz: %d chars"
+;;                            typing-outputz-buffer-local-counter))))))
+;;     
+;;     (add-hook 'typing-outputz-record-buffer-hook
+;;               'to-growl-record-buffer nil)
+
 
 ;;; Code:
 
