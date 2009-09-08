@@ -185,6 +185,7 @@
 	    )))))
 
 (defun typing-outputz-record-callback (status)
+  (url-mark-buffer-as-dead (current-buffer))
   status t)
 
 (unless typing-outputz-record-idle-timer
