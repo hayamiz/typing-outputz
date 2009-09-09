@@ -38,6 +38,16 @@
 
 ;;; Tips:
 ;;
+;; In default configuration, only 'self-insert-command' is the command
+;; to be counted. Of course, you can add commands to be counted by
+;; adding them to 'typing-outputz-counted-commands'
+;; For example, if you are using SKK, you may want this:
+;;
+;;     (add-to-list 'typing-outputz-counted-commands
+;;                  'skk-insert)
+;;
+
+;;
 ;; If 'notify-send' command is available on your machine, following
 ;; codes enables pop-up notification on update.
 ;;
@@ -72,8 +82,12 @@
 (defvar typing-outputz-record-idle-timer nil)
 
 (defcustom typing-outputz-record-buffer-hook nil
-  "Hook that is run after a buffer is recorded on Outputz"
+  "Hook that is run after a buffer is recorded on Outputz."
   :type 'hook)
+
+(defcustom typing-outputz-counted-commands '(self-insert-command)
+  "Commands that should be counted as typing."
+  :type '(list symbol))
 
 ;; mailcap.el problem: See http://d.hatena.ne.jp/hayamiz/20081121/1227228535
 (unless (fboundp 'mailcap-parse-mailcaps)
@@ -127,7 +141,7 @@
 
 (defun typing-outputz-handle-post-command ()
   (when (and typing-outputz-mode
-	     (eq this-command 'self-insert-command))
+	     (memq this-command typing-outputz-counted-commands))
     (typing-outputz-increment-local-counter 1)))
 
 (define-minor-mode typing-outputz-mode
