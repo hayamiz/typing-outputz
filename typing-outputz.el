@@ -33,7 +33,7 @@
 ;;
 ;;     (require 'typing-outputz)
 ;;     (global-typing-outputz-mode t)
-;;     (setq typing-outputz-key "bWAROb-quUbf")
+;;     (setq typing-outputz-key "*****-*****")
 ;;
 
 ;;; Tips:
