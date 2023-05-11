@@ -144,6 +144,7 @@
 	     (memq this-command typing-outputz-counted-commands))
     (typing-outputz-increment-local-counter 1)))
 
+;;;###autoload
 (define-minor-mode typing-outputz-mode
   "Typing Outputz mode"
   :lighter " TypOutputz"
